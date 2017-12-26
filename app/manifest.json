@@ -1,6 +1,6 @@
 {
-  "name": "MetaMask",
-  "short_name": "Metamask",
+  "name": "MetaMask For ETZ",
+  "short_name": "MetamaskETZ",
   "version": "3.13.3",
   "manifest_version": 2,
   "author": "https://metamask.io",
@@ -37,7 +37,7 @@
       "19": "images/icon-19.png",
       "38": "images/icon-38.png"
     },
-    "default_title": "MetaMask",
+    "default_title": "MetaMask For ETZ",
     "default_popup": "popup.html"
   },
   "content_scripts": [
