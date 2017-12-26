@@ -274,6 +274,23 @@ App.prototype.renderNetworkDropdown = function () {
     h(
       DropdownMenuItem,
       {
+        key: 'etz',
+        closeMenu: () => this.setState({ isNetworkMenuOpen: !isOpen }),
+        onClick: () => props.dispatch(actions.setProviderType('etz')),
+        style: {
+          fontSize: '18px',
+        },
+      },
+      [
+        h('.menu-icon.diamond'),
+        'ETZ Network',
+        providerType === 'etz' ? h('.check', '✓') : null,
+      ]
+    ),
+
+    h(
+      DropdownMenuItem,
+      {
         key: 'ropsten',
         closeMenu: () => this.setState({ isNetworkMenuOpen: !isOpen }),
         onClick: () => props.dispatch(actions.setProviderType('ropsten')),
@@ -634,6 +651,8 @@ App.prototype.getNetworkName = function () {
 
   if (providerName === 'mainnet') {
     name = 'Main Ethereum Network'
+  } else if (providerName === 'etz') {
+    name = 'ETZ Network'
   } else if (providerName === 'ropsten') {
     name = 'Ropsten Test Network'
   } else if (providerName === 'kovan') {

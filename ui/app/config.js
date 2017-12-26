@@ -193,6 +193,11 @@ function currentProviderDisplay (metamaskState) {
       value = 'Main Ethereum Network'
       break
 
+    case 'etz':
+      title = 'Current Network'
+      value = 'ETZ Network'
+      break
+
     case 'ropsten':
       title = 'Current Network'
       value = 'Ropsten Test Network'

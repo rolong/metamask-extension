@@ -1,4 +1,5 @@
 const MAINET_RPC_URL = 'https://mainnet.infura.io/metamask'
+const ETZ_RPC_URL = 'http://116.62.171.124:9646'
 const ROPSTEN_RPC_URL = 'https://ropsten.infura.io/metamask'
 const KOVAN_RPC_URL = 'https://kovan.infura.io/metamask'
 const RINKEBY_RPC_URL = 'https://rinkeby.infura.io/metamask'
@@ -10,6 +11,7 @@ module.exports = {
   network: {
     localhost: LOCALHOST_RPC_URL,
     mainnet: MAINET_RPC_URL,
+    etz: ETZ_RPC_URL,
     ropsten: ROPSTEN_RPC_URL,
     kovan: KOVAN_RPC_URL,
     rinkeby: RINKEBY_RPC_URL,
