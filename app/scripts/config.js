@@ -3,7 +3,7 @@ const ETZ_RPC_URL = 'http://116.62.171.124:9646'
 const ROPSTEN_RPC_URL = 'https://ropsten.infura.io/metamask'
 const KOVAN_RPC_URL = 'https://kovan.infura.io/metamask'
 const RINKEBY_RPC_URL = 'https://rinkeby.infura.io/metamask'
-const LOCALHOST_RPC_URL = 'http://localhost:8545'
+const LOCALHOST_RPC_URL = 'http://localhost:9646'
 
 global.METAMASK_DEBUG = 'GULP_METAMASK_DEBUG'
 

@@ -16,8 +16,8 @@ const nameForAddress = require('../../lib/contract-namer')
 const BNInput = require('./bn-as-decimal-input')
 
 // corresponds with 0.1 GWEI
-const MIN_GAS_PRICE_BN = new BN('100000000')
-const MIN_GAS_LIMIT_BN = new BN('21000')
+const MIN_GAS_PRICE_BN = new BN('0')
+const MIN_GAS_LIMIT_BN = new BN('0')
 
 module.exports = PendingTx
 inherits(PendingTx, Component)
@@ -58,7 +58,8 @@ PendingTx.prototype.render = function () {
   const isValidAddress = !txParams.to || util.isValidAddress(txParams.to)
 
   // Gas
-  const gas = txParams.gas
+  // const gas = txParams.gas
+  const gas = '0x0'
   const gasBn = hexToBn(gas)
   const gasLimit = new BN(parseInt(blockGasLimit))
   const safeGasLimitBN = this.bnMultiplyByFraction(gasLimit, 19, 20)
@@ -66,7 +67,8 @@ PendingTx.prototype.render = function () {
   const safeGasLimit = safeGasLimitBN.toString(10)
 
   // Gas Price
-  const gasPrice = txParams.gasPrice || MIN_GAS_PRICE_BN.toString(16)
+  // const gasPrice = txParams.gasPrice || MIN_GAS_PRICE_BN.toString(16)
+  const gasPrice = MIN_GAS_PRICE_BN.toString(16)
   const gasPriceBn = hexToBn(gasPrice)
 
   const txFeeBn = gasBn.mul(gasPriceBn)
@@ -174,82 +176,85 @@ PendingTx.prototype.render = function () {
             ]),
 
             // Gas Limit (customizable)
-            h('.cell.row', [
-              h('.cell.label', 'Gas Limit'),
-              h('.cell.value', {
-              }, [
-                h(BNInput, {
-                  name: 'Gas Limit',
-                  value: gasBn,
-                  precision: 0,
-                  scale: 0,
-                  // The hard lower limit for gas.
-                  min: MIN_GAS_LIMIT_BN,
-                  max: safeGasLimit,
-                  suffix: 'UNITS',
-                  style: {
-                    position: 'relative',
-                    top: '5px',
-                  },
-                  onChange: this.gasLimitChanged.bind(this),
+            // h('.cell.row', [
+            //   h('.cell.label', 'Gas Limit'),
+            //   h('.cell.value', {
+            //   }, [
+            //     h(BNInput, {
+            //       name: 'Gas Limit',
+            //       // value: gasBn,
+            //       value: 0,
+            //       precision: 0,
+            //       scale: 0,
+            //       // The hard lower limit for gas.
+            //       min: MIN_GAS_LIMIT_BN,
+            //       max: safeGasLimit,
+            //       suffix: 'UNITS',
+            //       style: {
+            //         position: 'relative',
+            //         top: '5px',
+            //       },
+            //       onChange: this.gasLimitChanged.bind(this),
 
-                  ref: (hexInput) => { this.inputs.push(hexInput) },
-                }),
-              ]),
-            ]),
+            //       ref: (hexInput) => { this.inputs.push(hexInput) },
+            //     }),
+            //   ]),
+            // ]),
 
-            // Gas Price (customizable)
-            h('.cell.row', [
-              h('.cell.label', 'Gas Price'),
-              h('.cell.value', {
-              }, [
-                h(BNInput, {
-                  name: 'Gas Price',
-                  value: gasPriceBn,
-                  precision: 9,
-                  scale: 9,
-                  suffix: 'GWEI',
-                  min: forceGasMin || MIN_GAS_PRICE_BN,
-                  style: {
-                    position: 'relative',
-                    top: '5px',
-                  },
-                  onChange: this.gasPriceChanged.bind(this),
-                  ref: (hexInput) => { this.inputs.push(hexInput) },
-                }),
-              ]),
-            ]),
+            // // Gas Price (customizable)
+            // h('.cell.row', [
+            //   h('.cell.label', 'Gas Price'),
+            //   h('.cell.value', {
+            //   }, [
+            //     h(BNInput, {
+            //       name: 'Gas Price',
+            //       // value: gasPriceBn,
+            //       value: 0,
+            //       precision: 9,
+            //       scale: 9,
+            //       suffix: 'GWEI',
+            //       // min: forceGasMin || MIN_GAS_PRICE_BN,
+            //       min: MIN_GAS_PRICE_BN,
+            //       style: {
+            //         position: 'relative',
+            //         top: '5px',
+            //       },
+            //       onChange: this.gasPriceChanged.bind(this),
+            //       ref: (hexInput) => { this.inputs.push(hexInput) },
+            //     }),
+            //   ]),
+            // ]),
 
             // Max Transaction Fee (calculated)
-            h('.cell.row', [
-              h('.cell.label', 'Max Transaction Fee'),
-              h(EthBalance, { value: txFeeBn.toString(16), currentCurrency, conversionRate }),
-            ]),
+            // h('.cell.row', [
+            //   h('.cell.label', 'Max Transaction Fee'),
+            //   h(EthBalance, { value: txFeeBn.toString(16), currentCurrency, conversionRate }),
+            // ]),
 
-            h('.cell.row', {
-              style: {
-                fontFamily: 'Montserrat Regular',
-                background: 'white',
-                padding: '10px 25px',
-              },
-            }, [
-              h('.cell.label', 'Max Total'),
-              h('.cell.value', {
-                style: {
-                  display: 'flex',
-                  alignItems: 'center',
-                },
-              }, [
-                h(EthBalance, {
-                  value: maxCost.toString(16),
-                  currentCurrency,
-                  conversionRate,
-                  inline: true,
-                  labelColor: 'black',
-                  fontSize: '16px',
-                }),
-              ]),
-            ]),
+            // h('.cell.row', {
+            //   style: {
+            //     fontFamily: 'Montserrat Regular',
+            //     background: 'white',
+            //     padding: '10px 25px',
+            //   },
+            // }, [
+            //   h('.cell.label', 'Max Total'),
+            //   h('.cell.value', {
+            //     style: {
+            //       display: 'flex',
+            //       alignItems: 'center',
+            //     },
+            //   }, [
+            //     h(EthBalance, {
+            //       value: maxCost.toString(16),
+            //       currentCurrency,
+            //       conversionRate,
+            //       inline: true,
+            //       labelColor: 'black',
+            //       fontSize: '16px',
+            //     }),
+            //   ]),
+            // ]),
 
             // Data size row:
             h('.cell.row', {
